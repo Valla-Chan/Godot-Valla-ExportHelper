@@ -16,6 +16,7 @@ Example: ```export var _c_category_name:int```
 ![cover](./img/category.png "Categories")
 
 - Use the `_sep_` prefix on a variable to export a horizontal separator:
+
 Example: ```export var _sep_spacer0:int```
 
 ![cover](./img/separator.png "Separators")
