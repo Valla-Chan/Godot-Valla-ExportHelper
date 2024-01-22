@@ -1,8 +1,6 @@
 class_name InspectorCategory
 extends Button
 
-var txt = RichTextLabel.new()
-
 func _init(info:Dictionary):
 	align = 0
 	size_flags_horizontal = SIZE_EXPAND_FILL

@@ -13,9 +13,14 @@ Serves as a replacement to mathewcst's [godot-export-categories](https://github.
 
 Example: ```export var _c_category_name:int```
 
-![cover](./img/category.png "Preview")
+![cover](./img/category.png "Categories")
 
-- Use the `_btn_` prefix on a variable to export a button
+- Use the `_sep_` prefix on a variable to export a horizontal separator:
+Example: ```export var _sep_spacer0:int```
+
+![cover](./img/separator.png "Separators")
+
+- Use the `_btn_` prefix on a variable to export a button.
 - Create a function that the button will call, with a name matches the variable name but without the leading `_`
 
 NOTE:
@@ -34,6 +39,6 @@ func btn_button():
 	pass
 
 ```
-![cover](./img/buttons.png "Preview")
+![cover](./img/buttons.png "Buttons")
 
 Clicking the button in the editor will run the associated function. Functions that modify the inspector or the object in the editor may still require use of the `tool` keyword in the script. Any arguments passed from the `Arguments` field, if there is one, will be automatically parsed to an `int`, `bool`, `float`, or `String` data type.

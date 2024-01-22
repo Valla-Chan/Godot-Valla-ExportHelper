@@ -23,4 +23,9 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 						name=path.trim_prefix("_c_"),
 					}))
 		return true
+	elif "_sep_" in path:
+		add_custom_control(InspectorSpacer.new({
+						name=path.trim_prefix("_c_"),
+					}))
+		return true
 	return false
