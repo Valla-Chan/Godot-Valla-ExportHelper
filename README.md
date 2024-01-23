@@ -5,6 +5,7 @@ Export colorable inspector categories, variable separators, new types of boolean
 Serves as a replacement to mathewcst's [godot-export-categories](https://github.com/mathewcst/godot-export-categories)
 
 ![cover](./img/Preview.png "Preview")
+![cover](./img/Preview2.png "Preview2")
 
 ## Usage
 
