@@ -10,6 +10,7 @@ Serves as a replacement to mathewcst's [godot-export-categories](https://github.
 ## Usage
 
 - Install and enable the plugin.
+- An example file `_ExampleScript.gd` is included in the addons folder to refer to for syntax help.
 
 ### Categories and Separators
 - Use the `_c_` prefix on a variable to export a category.
