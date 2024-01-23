@@ -22,7 +22,7 @@ Examples:
 export var _c_category_name:int
 export var _c_category_color := Color.orange
 ``` 
-![cover](./img/category.png "Categories")
+![cover](./img/categories.png "Categories")
 
 - Use the `_sep_` prefix on a variable to export a horizontal separator:
 
