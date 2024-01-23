@@ -8,7 +8,6 @@ var button = Button.new()
 var object:Object
 var info:Dictionary
 var method:String
-var type
 
 func _init(obj:Object, i):
 	object = obj
@@ -39,7 +38,10 @@ func _init(obj:Object, i):
 		args.size_flags_stretch_ratio = 0.33
 		args.size_flags_horizontal = SIZE_EXPAND_FILL
 		args.modulate = info.get("tint", Color(1.1,1.1,1.1))
-		args.placeholder_text = "[ Argument ]"
+		if object.get(info["name"]) != "":
+			args.placeholder_text = "[ "+object.get(info["name"])+" ]"
+		else:
+			args.placeholder_text = "[ Argument ]"
 		args.placeholder_alpha = 0.3
 		args.align = 1
 	else:
