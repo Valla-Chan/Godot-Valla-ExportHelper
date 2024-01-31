@@ -14,6 +14,18 @@ export (Vector2) var overlay_fade_times_range = Vector2(5,10)
 export (String) var _btn_button_arg = "Arguments"
 export (bool) var _btn_button
 
+'''CATEGORY''' export var _c_category_code_table:int
+export (Dictionary) var _ct_code_table = {
+	"foo" : "bar",
+	"zed" : "test",
+	"gg" : "test",
+	"abba" : "test",
+	"default" : {"desc":"This button does something!"},
+}
+
+export (Dictionary) var normal_dict = {
+	"foo" : "bar"
+}
 
 #export (Vector2) var values_range = Vector2(1,2)
 #export (Vector2) var values_range_2_minmax = Vector2(5,10)
@@ -23,9 +35,11 @@ export (bool) var _btn_button
 #export (Vector2) var values_vertical_topbottom = Vector2(-8,8)
 #export (Vector2) var values_horizontal_leftright = Vector2(2,4)
 
-
 func btn_button_arg(entry):
 	pass
 
 func btn_button():
+	pass
+
+func ct_code_table(entry):
 	pass

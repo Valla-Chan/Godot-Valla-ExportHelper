@@ -1,6 +1,8 @@
 class_name InspectorCategory
 extends Button
 
+# Requires var to be first exported as Inspector Placeholder
+
 var category_theme = preload("./CategoryTheme.tres")
 
 func _init(object,info:Dictionary):

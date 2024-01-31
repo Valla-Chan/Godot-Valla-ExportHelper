@@ -21,6 +21,13 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 						update_filesystem=true
 					}))
 		return true
+	# CodeTable Dictionaries with associated buttons per entry
+	elif "_ct_" in path && type == 18:
+		add_property_editor(path,EditorPropertyPlaceholder.new())
+		add_custom_control(InspectorCodeTable.new(object, {
+						name=path,
+					}))
+		return true
 	elif "_c_" in path:
 		add_property_editor(path,EditorPropertyPlaceholder.new())
 		add_custom_control(InspectorCategory.new(object,{
