@@ -1,10 +1,10 @@
 tool
 extends EditorPlugin
 
-var plugin 
+var plugin
 
 func _enter_tree():
-	plugin = preload("./FuncButton_InspectorPlugin.gd").new()
+	plugin = preload("./FuncButton_InspectorPlugin.gd").new(get_undo_redo())
 	add_inspector_plugin(plugin)
 
 func _exit_tree():

@@ -1,3 +1,5 @@
+tool
+extends Node2D
 
 '''CATEGORY''' export var _c_category_ranges_specific:int
 export (bool) var t_use_textbox = true
@@ -17,14 +19,11 @@ export (bool) var _btn_button
 '''CATEGORY''' export var _c_category_code_table:int
 export (Dictionary) var _ct_code_table = {
 	"foo" : "bar",
-	"zed" : "test",
-	"gg" : "test",
-	"abba" : "test",
+	"zed" : "que",
+	"gg" : "wp",
+	"abra" : "cadabra",
+	"sussy" : "baka",
 	"default" : {"desc":"This button does something!"},
-}
-
-export (Dictionary) var normal_dict = {
-	"foo" : "bar"
 }
 
 #export (Vector2) var values_range = Vector2(1,2)
@@ -42,4 +41,4 @@ func btn_button():
 	pass
 
 func ct_code_table(entry):
-	pass
+	print(entry, " : ", _ct_code_table[entry])

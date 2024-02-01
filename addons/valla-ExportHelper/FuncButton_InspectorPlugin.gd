@@ -1,6 +1,10 @@
 extends EditorInspectorPlugin
 
 var plugin
+var undo_redo : UndoRedo
+
+func _init(undoredo):
+	undo_redo = undoredo
 
 func can_handle(object):
 	return true
@@ -23,11 +27,13 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 		return true
 	# CodeTable Dictionaries with associated buttons per entry
 	elif "_ct_" in path && type == 18:
-		add_property_editor(path,EditorPropertyPlaceholder.new())
+		#add_property_editor(path,EditorPropertyDictionary.new())
 		add_custom_control(InspectorCodeTable.new(object, {
-						name=path,
-					}))
-		return true
+						path=path,
+						name=path.trim_prefix("_ct_"),
+						method=path.trim_prefix("_"),
+					},undo_redo))
+		return false
 	elif "_c_" in path:
 		add_property_editor(path,EditorPropertyPlaceholder.new())
 		add_custom_control(InspectorCategory.new(object,{
