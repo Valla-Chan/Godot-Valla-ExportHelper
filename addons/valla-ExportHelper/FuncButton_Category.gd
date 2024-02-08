@@ -20,7 +20,7 @@ func _init(object,info:Dictionary):
 		text = " "+get_label(info.get("name", "Category").trim_prefix("_c_"))
 		modulate = Color(1, 1, 1, 0.6)
 		theme = category_theme
-		self_modulate = object.get(info["name"]).lightened(0.3).darkened(0.5)
+		self_modulate = object.get(info["name"]).lightened(0.3).darkened(0.2)
 		add_color_override("font_color_disabled", Color(2.3, 2.3, 2.3))
 
 func get_label(name):

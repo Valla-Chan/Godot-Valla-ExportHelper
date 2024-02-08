@@ -3,13 +3,13 @@ extends VBoxContainer
 
 # Requires var to be first exported as Inspector Placeholder
 
+var icon_add = preload("./icon_add.svg")
+var icon_close = preload("./icon_close.svg")
 var icon_run = preload("./icon_play.svg")
 var icon_delete = preload("./icon_remove.svg")
 var undo_redo : UndoRedo
 
 var table : Dictionary
-# list of hbox nodes
-var hboxes : Array = []
 # store the entry strings and what hbox index they correspond to.
 var entryindexes : Dictionary = {}
 var update = true
@@ -58,14 +58,12 @@ func _update_list():
 		keys_ordered.push_front("default")
 
 	# create hboxes for each entry
-	hboxes.clear()
 	entryindexes.clear()
 	for index in keys_ordered.size():
 		
 		var hbox = HBoxContainer.new()
 		hbox.size_flags_horizontal = SIZE_EXPAND_FILL
 		add_child(hbox)
-		hboxes.push_back(hbox)
 		
 		var name = LineEdit.new()
 		name.text = keys_ordered[index]
@@ -92,6 +90,21 @@ func _update_list():
 		button.text = " "
 		button.connect("pressed", self, "_on_button_pressed", [keys_ordered[index]])
 		hbox.add_child(button)
+		
+		# add "add" button only if there is a method for it.
+		var button_add = Button.new()
+		button_add.size_flags_horizontal = SIZE_EXPAND_FILL
+		button_add.align = Button.ALIGN_CENTER
+		button_add.icon_align = Button.ALIGN_CENTER
+		button_add.icon = icon_add
+		button_add.disabled = false
+		button_add.modulate = Color(1.3,1.3,1.3)
+		button_add.text = " "
+		button_add.connect("pressed", self, "_on_button_pressed_add", [keys_ordered[index]])
+		button_add.size_flags_stretch_ratio = 0.001
+		button_add.rect_min_size = Vector2(0,0)
+		if (object.has_method(method+"_add") || object.has_method(method+"_addremove")) && keys_ordered[index] != "default":
+			hbox.add_child(button_add)
 
 		# add "delete" button
 		var deletebutton = Button.new()
@@ -116,6 +129,12 @@ func _update_list():
 
 func _on_button_pressed(key):
 	object.call(method,key)
+
+func _on_button_pressed_add(key):
+	if object.has_method(method+"_add"):
+		object.call(method+"_add",key)
+	elif object.has_method(method+"_addremove"):
+		object.call(method+"_addremove",key)
 
 func _update_data_name(new_text,old_text, name):
 	new_text = name.get_text()
@@ -147,9 +166,3 @@ func _create_undoredo_action(action,vartable_old,vartable_new):
 	undo_redo.add_undo_method(object, "property_list_changed_notify")
 	undo_redo.commit_action()
 
-#func _value_changed(_value):
-#	emit_changed(get_edited_property(),Vector2(minfield.value,maxfield.value))
-	
-#func run_changed(property,value,field,changing):
-#	minfield.value = value.x
-#	maxfield.value = value.y
