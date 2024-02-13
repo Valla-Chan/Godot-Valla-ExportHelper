@@ -9,10 +9,26 @@ func _init(undoredo):
 func can_handle(object):
 	return true
 
+# object : "var"
+var hidden_vars = {}
+
 # Dev note: reference editor_properties.cpp for exports.
 
 func parse_property(object: Object, type: int, path: String, hint: int, hint_text: String, usage: int) -> bool:
-	if "_btn_" in path:
+	# hide vars using another exported var prefix
+	if "_hide_" in path:
+		if hidden_vars.has(object):
+			hidden_vars[object].push_back(path.trim_prefix("_hide_"))
+		else:
+			hidden_vars[object] = [path.trim_prefix("_hide_")]
+		return true
+	elif hidden_vars.has(object) && hidden_vars[object].has(path):
+		add_property_editor(path,EditorPropertyPlaceholder.new())
+		hidden_vars[object].erase(path)
+		return true
+	
+	#-----------------------------------------
+	elif "_btn_" in path:
 		# Hide argument field if exporting as bool or int.
 		# Show field if exporting as String or other.
 		# String is type 4, bool is type 1, int is type 2
