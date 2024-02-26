@@ -57,6 +57,11 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 						type=type,
 					}))
 		return true
+	elif "_nstr_" in path && type == 4:
+		add_property_editor(path,InspectorNodeString.new(object, {
+						name=path,
+					}))
+		return true
 	elif "_sep_" in path:
 		add_custom_control(InspectorSpacer.new({
 						name=path.trim_prefix("_c_"),

@@ -19,9 +19,6 @@ func _init(obj:Object, i):
 func _enter_tree():
 	label = info["name"].trim_prefix("t_").capitalize()
 
-func get_tooltip_text():
-	return "GAY"
-
 func _value_changed(value):
 	emit_changed(get_edited_property(),value)
 

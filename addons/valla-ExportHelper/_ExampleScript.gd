@@ -16,6 +16,8 @@ export (Vector2) var overlay_fade_times_range = Vector2(5,10)
 export (String) var _btn_button_arg = "Arguments"
 export (bool) var _btn_button
 
+export (String) var _nstr_actor
+
 '''CATEGORY''' export var _c_category_code_table:int
 export (Dictionary) var _ct_code_table = {
 	"foo" : "bar",
