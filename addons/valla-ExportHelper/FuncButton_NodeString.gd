@@ -16,7 +16,7 @@ func _init(obj:Object, i):
 	connect("property_changed",self,"run_changed")
 
 func _enter_tree():
-	label = info["name"].trim_prefix("_nstr_").capitalize()
+	label = info["name"].capitalize()
 
 func _value_changed(value):
 	emit_changed(get_edited_property(),value)

@@ -57,11 +57,6 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 						type=type,
 					}))
 		return true
-	elif "_nstr_" in path && type == 4:
-		add_property_editor(path,InspectorNodeString.new(object, {
-						name=path,
-					}))
-		return true
 	elif "_sep_" in path:
 		add_custom_control(InspectorSpacer.new({
 						name=path.trim_prefix("_c_"),
@@ -111,9 +106,18 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 					}))
 		return true
 	# Bools that display "True" instead of "On"
-	elif "t_" in path && type == 1:
+	elif path.begins_with("t_") && type == 1:
 		add_property_editor(path,InspectorTBool.new(object, {
 						name=path,
 					}))
 		return true
+
+	# all other strings:
+	elif type == 4:
+		add_property_editor(path,InspectorNodeString.new(object, {
+						name=path,
+					}))
+		return true
+	
+	# last case
 	return false
