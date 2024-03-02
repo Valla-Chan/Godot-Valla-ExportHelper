@@ -62,6 +62,21 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 						name=path.trim_prefix("_c_"),
 					}))
 		return true
+	# Direction Vector
+	elif path.begins_with("dir_") && type == 5:
+		var dict = {name = path}
+		if "_90" in path:
+			dict["increment"] = 90
+		if "_45" in path:
+			dict["increment"] = 45
+		elif "_30" in path:
+			dict["increment"] = 30
+		elif "_15" in path:
+			dict["increment"] = 15
+		elif "_10" in path:
+			dict["increment"] = 10
+		add_property_editor(path,InspectorDirection.new(object, dict))
+		return true
 	# Vector Ranges
 	elif path.ends_with("_range") && type == 5:
 		add_property_editor(path,InspectorVecRange.new(object, {
@@ -113,7 +128,7 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 		return true
 
 	# all other strings:
-	elif type == 4:
+	elif type == 4 && hint == 0:
 		add_property_editor(path,InspectorNodeString.new(object, {
 						name=path,
 					}))

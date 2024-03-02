@@ -17,6 +17,7 @@ export (String) var _btn_button_arg = "Arguments"
 export (bool) var _btn_button
 
 export (String) var actor
+export (Vector2) var dir_direction
 
 '''CATEGORY''' export var _c_category_code_table:int
 export (Dictionary) var _ct_code_table = {
