@@ -128,7 +128,7 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 		return true
 
 	# all other strings:
-	elif type == 4 && hint == 0:
+	elif type == 4 && hint == 0 && object != null:
 		add_property_editor(path,InspectorNodeString.new(object, {
 						name=path,
 					}))
