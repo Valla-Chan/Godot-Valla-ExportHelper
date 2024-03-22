@@ -45,10 +45,10 @@ func _init(obj:Object,i):
 			minfield.set_label("Min")
 			maxfield.set_label("Max")
 	minfield.step = 0.001
-	minfield.step = 0.001
+	maxfield.step = 0.001
 	minfield.allow_greater = true
 	minfield.allow_lesser = true
-	minfield.allow_greater = true
+	maxfield.allow_greater = true
 	maxfield.allow_lesser = true
 	var blankimg := ImageTexture.new()
 	minfield.add_icon_override("updown",blankimg)
