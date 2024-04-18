@@ -77,6 +77,10 @@ func _value_changed(_value):
 		_value = Vector2.LEFT.rotated(_value)
 	emit_changed(get_edited_property(),_value)
 
+
+func update_property():
+	run_changed("",object.get(info["name"]),"",false)
+
 func run_changed(property,value,field,changing):
 	if check.pressed: #value != Vector2.ZERO:
 		if value == Vector2.ZERO:

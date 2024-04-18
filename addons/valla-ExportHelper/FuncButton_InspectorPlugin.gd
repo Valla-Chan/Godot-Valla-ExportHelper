@@ -28,6 +28,9 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 		return true
 	
 	#-----------------------------------------
+	elif path == "playing" && type == 1:
+		add_property_editor(path,InspectorPlayback.new(object,path))
+		return true
 	elif "_btn_" in path:
 		# Hide argument field if exporting as bool or int.
 		# Show field if exporting as String or other.
