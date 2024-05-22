@@ -1,7 +1,7 @@
 extends EditorInspectorPlugin
 
 var plugin
-var undo_redo : UndoRedo
+var undo_redo
 
 func _init(undoredo):
 	undo_redo = undoredo
