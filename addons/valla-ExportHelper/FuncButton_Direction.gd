@@ -8,8 +8,6 @@ var dircontrol = preload("./Vector_Direction_Control.tscn").instance()
 var object : Object
 var info : Dictionary
 
-#var xfield := EditorSpinSlider.new()
-#var yfield := EditorSpinSlider.new()
 var degrees := EditorSpinSlider.new()
 var check := CheckBox.new()
 
@@ -29,6 +27,8 @@ func _init(obj:Object,i):
 	degrees.size_flags_horizontal = SIZE_EXPAND_FILL
 	degrees.min_value = -360
 	degrees.max_value = 360
+	if degrees.is_connected("value_changed",self,"update_dircontrol"):
+		degrees.disconnect("value_changed",self,"update_dircontrol")
 	degrees.connect("value_changed",self,"update_dircontrol")
 	
 	check.focus_mode = 0
