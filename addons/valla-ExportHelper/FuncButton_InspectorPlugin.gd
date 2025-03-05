@@ -56,6 +56,15 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 						method=path.trim_prefix("_"),
 					},undo_redo))
 		return false
+	# List of nodes and their paths
+	#elif "_nodelist_" in path && type == 18:
+		#add_property_editor(path,EditorPropertyDictionary.new())
+	#	add_custom_control(InspectorCodeTable.new(object, {
+	#					path=path,
+	#					name=path.trim_prefix("_ct_"),
+	#					method=path.trim_prefix("_"),
+	#				},undo_redo))
+	#	return false
 	elif "_c_" in path:
 		add_property_editor(path,EditorPropertyPlaceholder.new())
 		add_custom_control(InspectorCategory.new(object,{

@@ -60,8 +60,11 @@ func _init(obj:Object,i):
 	
 	minfield.value = object.get(info["name"]).x
 	maxfield.value = object.get(info["name"]).y
-	minfield.connect("value_changed",self,"_value_changed")
-	maxfield.connect("value_changed",self,"_value_changed")
+	
+	if !(minfield.is_connected("value_changed",self,"_value_changed")):
+		minfield.connect("value_changed",self,"_value_changed")
+	if !(maxfield.is_connected("value_changed",self,"_value_changed")):
+		maxfield.connect("value_changed",self,"_value_changed")
 	
 	values_hbox.add_child(minfield)
 	values_hbox.add_child(maxfield)

@@ -27,9 +27,8 @@ func _init(obj:Object,i):
 	degrees.size_flags_horizontal = SIZE_EXPAND_FILL
 	degrees.min_value = -360
 	degrees.max_value = 360
-	if degrees.is_connected("value_changed",self,"update_dircontrol"):
-		degrees.disconnect("value_changed",self,"update_dircontrol")
-	degrees.connect("value_changed",self,"update_dircontrol")
+	if !degrees.is_connected("value_changed",self,"update_dircontrol"):
+		degrees.connect("value_changed",self,"update_dircontrol")
 	
 	check.focus_mode = 0
 	check.pressed = object.get(info["name"]) != Vector2.ZERO
@@ -94,5 +93,6 @@ func run_changed(property,value,field,changing):
 		else:
 			if degrees.is_connected("value_changed",self,"update_dircontrol"):
 				degrees.disconnect("value_changed",self,"update_dircontrol")
+				degrees.call_deferred("connect","value_changed",self,"update_dircontrol")
 			degrees.value = 180
-			degrees.call_deferred("connect","value_changed",self,"update_dircontrol")
+			
