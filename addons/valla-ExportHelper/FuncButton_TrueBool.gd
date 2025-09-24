@@ -11,7 +11,7 @@ func _init(obj:Object, i):
 	
 	check.text = "True"
 	check.pressed = object.get(info["name"])
-	check.connect("toggled",self,"_value_changed")
+	check.connect("toggled", self, "_value_changed")
 	add_child(check)
 	add_focusable(check)
 	connect("property_changed",self,"run_changed")

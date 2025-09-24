@@ -27,5 +27,6 @@ func run_changed(property,value,field,changing):
 
 func update_property():
 	var newtext = object.get(info["name"])
+	if !newtext is String && newtext == null: return
 	if newtext != nodename.text:
 		nodename.text = newtext

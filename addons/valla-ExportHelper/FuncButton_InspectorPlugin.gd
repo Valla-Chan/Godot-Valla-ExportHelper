@@ -14,6 +14,11 @@ var hidden_vars = {}
 
 # Dev note: reference editor_properties.cpp for exports.
 
+# Type:
+# 1 = bool
+# 2 = int
+# 4 = String
+
 func parse_property(object: Object, type: int, path: String, hint: int, hint_text: String, usage: int) -> bool:
 	# hide vars using another exported var prefix
 	if "_hide_" in path:
@@ -37,7 +42,6 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 	elif "_btn_" in path:
 		# Hide argument field if exporting as bool or int.
 		# Show field if exporting as String or other.
-		# String is type 4, bool is type 1, int is type 2
 		var usearg = false if type == 1 || type == 2 else true
 		add_custom_control(InspectorFunctionButton.new(object, {
 						name=path,
@@ -148,6 +152,12 @@ func parse_property(object: Object, type: int, path: String, hint: int, hint_tex
 						name=path,
 					}))
 		return true
-	
+		
+	else:
+		# String Choices
+		if type == 4 && hint == 3 && hint_text.length() > 0:
+			if (path == "to_scene" || path == "map_name"): return false
+			add_property_editor(path, InspectorStringChoices.new(object, path, hint_text))
+			return true
 	# last case
 	return false

@@ -34,6 +34,8 @@ func set_angle_vec(vec):
 	#if emit && emit_signal: emit_signal("value_changed",angle_vec)
 
 func nearest_increment(x,step):
+	#if rad2deg(step) != round(rad2deg(step)):
+	#	return (float(x)/step)*step
 	return round(float(x)/step)*step
 
 #remap out of bounds 

@@ -20,6 +20,7 @@ func _init(obj:Object,i):
 	dircontrol.angle_vec = object.get(info["name"])
 	dircontrol.connect("angle_changed",self,"update_dircontrol")
 	dircontrol.increment = info.get("increment",1)
+	if dircontrol.increment == 22: dircontrol.increment = 22.5
 	
 	degrees.value = rad2deg(dircontrol.angle_vec.angle())
 	degrees.theme = category_theme
